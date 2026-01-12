@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox prefHeight="1980.0" prefWidth="1020.0" styleClass="telainicial" stylesheets="@css/telainicial.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.MesaDeMedicao.controller.TelaInicialController">
+<VBox prefHeight="1980.0" prefWidth="1020.0"  styleClass="telainicial" stylesheets="@css/telainicial.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.MesaDeMedicao.controller.TelaInicialController">
    <children>
       <HBox alignment="CENTER" prefHeight="164.0" prefWidth="1020.0">
          <children>
-            <ButtonBar prefHeight="164.0" prefWidth="1030.0">
+            <ButtonBar prefHeight="164.0" prefWidth="922.0">
                <buttons>
-                  <Button accessibleRole="MENU" alignment="CENTER" cache="true" cacheShape="false" cancelButton="true" centerShape="false" contentDisplay="TOP" defaultButton="true" depthTest="DISABLE" focusTraversable="false" mnemonicParsing="false" prefWidth="300.0" scaleShape="false" style="-fx-background-color: none; -fx-border-color: white;" textFill="WHITE">
+                  <Button fx:id="btn_List" accessibleRole="MENU" alignment="CENTER" cache="true" cacheShape="false" cancelButton="true" centerShape="false" contentDisplay="TOP" defaultButton="true" depthTest="DISABLE" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#AbrirTelaLista" prefWidth="300.0" scaleShape="false" style="-fx-background-color: none; -fx-border-color: white;" textFill="WHITE">
                      <effect>
                         <Glow level="0.29" />
                      </effect>
@@ -23,12 +23,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <graphic>
-                        <FontIcon fx:id="Btn_List" iconColor="WHITE" iconLiteral="mdi2l-list-box-outline" iconSize="60" onMouseClicked="#AbrirTelaLista" />
+                        <FontIcon iconColor="WHITE" iconLiteral="mdi2l-list-box-outline" iconSize="60" />
                      </graphic>
                   </Button>
-                  <Button accessibleRole="MENU" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#AbrirTelaManual" style="-fx-background-color: none; -fx-border-color: white;" textFill="WHITE">
+                  <Button fx:id="Btn_Manual" accessibleRole="MENU" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#AbrirTelaManual" style="-fx-background-color: none; -fx-border-color: white;" textFill="WHITE">
                      <graphic>
-                        <FontIcon fx:id="Btn_Manual" iconColor="WHITE" iconLiteral="mdi2h-hand-front-right-outline" iconSize="60" />
+                        <FontIcon iconColor="WHITE" iconLiteral="mdi2h-hand-front-right-outline" iconSize="60" />
                      </graphic>
                      <effect>
                         <Glow />
@@ -37,9 +37,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button accessibleRole="MENU" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#AbrirTelaConf" style="-fx-background-color: none; -fx-border-color: white;" textFill="WHITE">
+                  <Button fx:id="Btn_Conf" accessibleRole="MENU" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#AbrirTelaConf" style="-fx-background-color: none; -fx-border-color: white;" textFill="WHITE">
                      <graphic>
-                        <FontIcon fx:id="Btn_Conf" iconColor="WHITE" iconLiteral="mdi2w-wrench" iconSize="60" />
+                        <FontIcon iconColor="WHITE" iconLiteral="mdi2w-wrench" iconSize="60" />
                      </graphic>
                      <effect>
                         <Glow />
@@ -50,7 +50,7 @@
                   </Button>
                </buttons>
                <padding>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets right="22.0" />
                </padding>
             </ButtonBar>
          </children>

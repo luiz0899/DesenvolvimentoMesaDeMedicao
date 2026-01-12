@@ -1,4 +1,4 @@
-package com.br.MesaDeMedicao.controller;
+package com.br.mesademedicao.controller;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -10,9 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
-public class TelaInicialController {
+public class TelaListaController {
 
-  @FXML
+    @FXML
     private Button Btn_Conf;
 
     @FXML
@@ -85,6 +85,4 @@ public class TelaInicialController {
     
         
     }
-
-
 }

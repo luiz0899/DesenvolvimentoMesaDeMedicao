@@ -36,6 +36,14 @@
 		<version>1.18.42</version>
 		<scope>provided</scope>
 	</dependency>
+        
+        <dependency>
+            <groupId>com.fazecast</groupId>
+            <artifactId>jSerialComm</artifactId>
+            <version>2.11.4</version>
+            <scope>compile</scope>
+        </dependency>
+        
     </dependencies>
     <build>
         <plugins>
@@ -45,13 +53,6 @@
                 <version>3.8.0</version>
                 <configuration>
                     <release>11</release>
-                    <annotationProcessorPaths>
-					<path>
-						<groupId>org.projectlombok</groupId>
-						<artifactId>lombok</artifactId>
-						<version>1.18.42</version>
-					</path>
-				</annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
@@ -63,13 +64,10 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <!-- Default configuration for running -->
-                        <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                     </execution>
                     <execution>
-                        <!-- Configuration for manual attach debugging -->
-                        <!-- Usage: mvn clean javafx:run@debug -->
+
                         <id>debug</id>
                         <configuration>
                             <options>
@@ -78,7 +76,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <!-- Configuration for automatic IDE debugging -->
                         <id>ide-debug</id>
                         <configuration>
                             <options>
@@ -87,7 +84,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <!-- Configuration for automatic IDE profiling -->
                         <id>ide-profile</id>
                         <configuration>
                             <options>
