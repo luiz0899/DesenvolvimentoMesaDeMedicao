@@ -1,5 +1,6 @@
 package com.br.mesademedicao;
 
+import com.br.mesademedicao.util.ConexaoArduino;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        
+        //Gera a Conexão com arduino
+        ConexaoArduino app = ConexaoArduino.getInstancia();
+        app.conectar("COM6", 9600);
+
         scene = new Scene(loadFXML("/com/br/mesademedicao/view/TelaInicial"), 640, 480);
         stage.setScene(scene);
         stage.show();

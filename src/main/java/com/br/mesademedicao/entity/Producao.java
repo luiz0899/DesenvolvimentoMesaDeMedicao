@@ -2,17 +2,17 @@
 package com.br.mesademedicao.entity;
 
 
-public class Lista {
+public class Producao {
     
     private Integer pedido;
     private String cliente;
     private String Descricao;
     private String produto;
     private Integer quantidade;
-    private Integer medida;
+    private Double medida;
     private boolean corteConcluido;
 
-    public Lista(Integer pedido, String cliente, String Descricao, String produto, Integer quantidade, Integer medida, boolean corteConcluido) {
+    public Producao(Integer pedido, String cliente, String Descricao, String produto, Integer quantidade, Double medida, boolean corteConcluido) {
         this.pedido = pedido;
         this.cliente = cliente;
         this.Descricao = Descricao;
@@ -21,6 +21,10 @@ public class Lista {
         this.medida = medida;
         this.corteConcluido = corteConcluido;
     } 
+    
+    public Producao(Double medida){
+        this.medida = medida;
+    }
 
     public Integer getPedido() {
         return pedido;
@@ -62,11 +66,11 @@ public class Lista {
         this.quantidade = quantidade;
     }
 
-    public Integer getMedida() {
+    public Double getMedida() {
         return medida;
     }
 
-    public void setMedida(Integer medida) {
+    public void setMedida(Double medida) {
         this.medida = medida;
     }
 

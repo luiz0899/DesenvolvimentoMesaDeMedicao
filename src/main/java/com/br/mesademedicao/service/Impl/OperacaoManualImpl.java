@@ -1,5 +1,6 @@
 package com.br.mesademedicao.service.Impl;
 
+import com.br.mesademedicao.entity.Configuracao;
 import com.br.mesademedicao.entity.Controle;
 import com.br.mesademedicao.service.OperacaoManual;
 import com.br.mesademedicao.service.proxy.OperacaoManualProxy;
@@ -8,20 +9,16 @@ import java.io.IOError;
 
 public class OperacaoManualImpl implements OperacaoManual{
     
-    private final OperacaoManualProxy proxy;
-    private Controle controle ;    
+    private OperacaoManualProxy proxy = new OperacaoManualProxy();
+    private Configuracao Conf;
     
-    public OperacaoManualImpl(OperacaoManualProxy proxy){
-        this.proxy = proxy;
-        
-    }
-       @Override
-    public void operacaoJogEsq(boolean direcao, Integer velocidade) {
+    @Override
+    public void operacaoJogEsq(Integer velocidade) {
         
         try {
             if(velocidade < 0 || velocidade == null ){ throw new IllegalArgumentException("Velocidade deve ser maior que zero");}
             
-            proxy.operacaoJogEsq(direcao, velocidade);
+            proxy.operacaoJogEsq(velocidade);
             
         } catch (Exception e) {
             throw new IllegalArgumentException (e + "Direção esquerda ou velocidade Inconsistente.");
@@ -29,25 +26,33 @@ public class OperacaoManualImpl implements OperacaoManual{
     }
 
     @Override
-    public void operacaoJogDir(boolean direcao, Integer velocidade) {
+    public void operacaoJogDir(Integer velocidade) {
         
         try {
             if(velocidade < 0 || velocidade == null ){ throw new IllegalArgumentException("Velocidade deve ser maior que zero");}
             
-            proxy.operacaoJogDir(direcao, velocidade);
+            proxy.operacaoJogDir(velocidade);
             
         } catch (Exception e) {
             throw new IllegalArgumentException (e + "Direção direita ou velocidade Inconsistente.");
         }
     }
-
+    
+    @Override
+    public void Stop_mov() {
+        
+        try {
+            proxy.Stop_mov();
+            
+        } catch (Exception e) {
+            throw new IllegalArgumentException (e + "Falha ao parar a movmentação.");
+        }
+    }
+    
     @Override
     public void ativarFreio() {
         
         try {
-            if (controle != null) {
-                controle.setFreio(true);
-            }
             proxy.ativarFreio();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao ativar freio: " + e.getMessage(), e);
@@ -58,9 +63,6 @@ public class OperacaoManualImpl implements OperacaoManual{
     public void liberarFreio() {
         
         try {
-            if (controle != null) {
-                controle.setFreio(false);
-            }
             proxy.liberarFreio();
         } catch (Exception e) {
             throw new RuntimeException("Erro ao liberar freio: " + e.getMessage(), e);
@@ -72,12 +74,24 @@ public class OperacaoManualImpl implements OperacaoManual{
     public void referenciar() {
         
         try {
-            if (controle != null) {
-                controle.setRefMsea(true);
-            }
             proxy.referenciar();
         } catch (Exception e) {
             throw new RuntimeException("Erro no referenciamento: " + e.getMessage(), e);
         }
     }
+
+    @Override
+    public void AtvMedida(double medida) { 
+        try {
+            double ValPulso = ( medida * Conf.getPassosPorRevolucao() * Conf.getMicrostepping()) 
+                                / Conf.getPassoFuso();  ;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro no calculo da Medida: " + e.getMessage(), e);
+
+        }
+  
+    }
+
+    
 }

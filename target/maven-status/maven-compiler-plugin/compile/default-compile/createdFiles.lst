@@ -3,10 +3,10 @@ com\br\mesademedicao\controller\TelaInicialController.class
 com\br\mesademedicao\controller\TelaManualController.class
 com\br\mesademedicao\util\ConexaoArduino.class
 com\br\mesademedicao\App.class
-com\br\mesademedicao\entity\Lista.class
 com\br\mesademedicao\service\proxy\OperacaoManualProxy.class
 com\br\mesademedicao\service\OperacaoManual.class
 com\br\mesademedicao\controller\TelaListaController.class
+com\br\mesademedicao\entity\Producao.class
 com\br\mesademedicao\controller\TelaConfController.class
 module-info.class
 com\br\mesademedicao\entity\Controle.class

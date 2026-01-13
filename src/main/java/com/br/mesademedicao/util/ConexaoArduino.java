@@ -1,44 +1,105 @@
 package com.br.mesademedicao.util;
 
 import com.fazecast.jSerialComm.SerialPort;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Scanner;
 
 public class ConexaoArduino {
-    public static void main(String[] args) {
-        // Lista as portas disponíveis
-        SerialPort[] portas = SerialPort.getCommPorts();
-        System.out.println("Selecione a porta do seu Arduino:");
+    //--Gera a conexão de instacia entre as classes proxy e app
+    private ConexaoArduino() {
+     // Construtor privado para evitar instanciação externa
+    }
+    private static ConexaoArduino instancia;
+
+    public static synchronized ConexaoArduino getInstancia() {
+        if (instancia == null) {
+            instancia = new ConexaoArduino();
+        }
+        return instancia;
+    }//--
+
+    private SerialPort porta;
+    private Scanner leitor;
+    private OutputStream saida;
+    
+    public boolean conectar(String nomePorta, int baudRate) {
+        // Tenta encontrar a porta
+        porta = SerialPort.getCommPort(nomePorta);
         
-        for (int i = 0; i < portas.length; i++) {
-            System.out.println(i + " - " + portas[i].getSystemPortName());
+        // Configurações padrão
+        porta.setBaudRate(baudRate);
+        porta.setNumDataBits(8);
+        porta.setNumStopBits(SerialPort.ONE_STOP_BIT);
+        porta.setParity(SerialPort.NO_PARITY);
+        
+        // Define timeout para evitar que o programa trave infinitamente
+        porta.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
+
+        if (!porta.openPort()) {
+            System.err.println("ERRO: Não foi possível abrir a porta " + nomePorta);
+            System.err.println("Verifique se o Monitor Serial do Arduino está aberto ou se o cabo está conectado.");
+            return false;
         }
 
-        // Escolhe a primeira porta (ajuste conforme necessário)
-        SerialPort portaSelecionada = portas[0];
+        // IMPORTANTE: Aguarda o Arduino reiniciar após a abertura da porta
+        try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 
-        // Configura parâmetros (devem ser iguais aos do Arduino)
-        portaSelecionada.setBaudRate(9600);
+        InputStream entrada = porta.getInputStream();
+        saida = porta.getOutputStream();
+        leitor = new Scanner(entrada);
 
-        if (portaSelecionada.openPort()) {
-            System.out.println("Porta aberta com sucesso!");
-        } else {
-            System.out.println("Falha ao abrir a porta.");
-            return;
-        }
+        iniciarLeitura();
 
-        // Thread para ler os dados vindos do Arduino
-        Thread threadLeitura = new Thread(() -> {
-            Scanner scannerSerial = new Scanner(portaSelecionada.getInputStream());
-            while (scannerSerial.hasNextLine()) {
-                System.out.println("Arduino diz: " + scannerSerial.nextLine());
+        System.out.println("SUCESSO: Conectado ao Arduino em " + nomePorta);
+        return true;
+    }
+
+    private void iniciarLeitura() {
+        Thread leitura = new Thread(() -> {
+            System.out.println("Monitorando dados do Arduino...");
+            while (porta != null && porta.isOpen()) {
+                try {
+                    // Verifica se há dados para ler antes de chamar o Scanner
+                    if (porta.bytesAvailable() > 0) {
+                        if (leitor.hasNextLine()) {
+                            String resposta = leitor.nextLine();
+                            System.out.println("Arduino diz: " + resposta);
+                        }
+                    }
+                    Thread.sleep(20); // Pequena pausa para não sobrecarregar a CPU
+                } catch (Exception e) {
+                    System.err.println("Erro na leitura serial: " + e.getMessage());
+                    break;
+                }
             }
         });
-        threadLeitura.start();
+        leitura.setDaemon(true);
+        leitura.start();
+    }
 
-        // Exemplo: Enviando comando '1' para ligar o LED
+    public synchronized void enviarComando(String comando) {
+        if(saida == null ){
+                System.out.print("aq");
+        }
+        
         try {
-            portaSelecionada.getOutputStream().write('1');
-            portaSelecionada.getOutputStream().flush();
+            if (saida != null) {
+                saida.write((comando + "\n").getBytes());
+                saida.flush();
+                System.out.println("Comando enviado: " + comando);
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao enviar comando: " + e.getMessage());
+        }
+    }
+
+    public void desconectar() {
+        try {
+            if (porta != null && porta.isOpen()) {
+                porta.closePort();
+                System.out.println("Conexão serial encerrada.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

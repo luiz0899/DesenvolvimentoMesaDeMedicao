@@ -5,8 +5,9 @@ C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\j
 C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\util\ConexaoArduino.java
 C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\controller\TelaConfController.java
 C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\controller\TelaInicialController.java
-C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\entity\Lista.java
+C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\entity\Producao.java
 C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\service\proxy\OperacaoManualProxy.java
+C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\util\ConfArduino.java
 C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\entity\Controle.java
 C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\App.java
 C:\Users\LUIZ HENRIQUE\Desktop\desenvolvimento mesa cnc\MesaDeMedicao\src\main\java\com\br\mesademedicao\controller\TelaListaController.java

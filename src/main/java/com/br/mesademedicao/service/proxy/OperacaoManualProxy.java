@@ -6,33 +6,44 @@ import com.br.mesademedicao.util.ConexaoArduino;
 
 public class OperacaoManualProxy implements OperacaoManual {
     
-    private final ConexaoArduino arduino; // Conexão direta com hardware
     
-    public OperacaoManualProxy(ConexaoArduino arduino) {
-        this.arduino = arduino;
+    //- instancia a conexão com arduino
+    private final ConexaoArduino arduino;
+    
+      // Usa a instância Singleton
+    public OperacaoManualProxy() {      
+        this.arduino = ConexaoArduino.getInstancia();
     }
+    //-
     
     @Override
-    public void operacaoJogEsq(boolean direcao, Integer velocidade) {
-        
-        System.out.println(velocidade );
-        
+    public void operacaoJogEsq(Integer velocidade) {          
+       arduino.getInstancia().enviarComando("JOG_ESQ:" + velocidade);              
     }
-
     @Override
-    public void operacaoJogDir(boolean direcao, Integer velocidade) {
+    public void operacaoJogDir(Integer velocidade) {
+        arduino.getInstancia().enviarComando("JOG_DIR:" + velocidade);
     }
-    
+      @Override
+    public void Stop_mov() {
+        arduino.getInstancia().enviarComando("STOP_MOV");
+    }
     @Override
     public void ativarFreio() {
+        arduino.getInstancia().enviarComando("ATV_FREIO");
     }
-
     @Override
     public void liberarFreio() {
+        arduino.getInstancia().enviarComando("DES_FREIO");   
+    }
+    @Override
+    public void referenciar() {
+        arduino.getInstancia().enviarComando("REF");
     }
 
     @Override
-    public void referenciar() {
+    public void AtvMedida(double medida) {
+        arduino.getInstancia().enviarComando("MED:" + medida);
     }
 
  

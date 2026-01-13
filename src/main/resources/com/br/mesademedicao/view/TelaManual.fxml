@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox maxHeight="-Infinity" stylesheets="@css/telamanual.css" styleClass="telamanual" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1980.0" prefWidth="1020.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.mesademedicao.controller.TelaManualController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1980.0" prefWidth="1020.0" style="-fx-background-color: red;" styleClass="telamanual" stylesheets="@css/telamanual.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.mesademedicao.controller.TelaManualController">
    <children>
       <HBox alignment="CENTER" prefHeight="164.0" prefWidth="1020.0">
          <children>
@@ -127,7 +127,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="Btn_Freio" mnemonicParsing="false" prefHeight="50.0" prefWidth="944.0" text="Freio">
+                        <Button mnemonicParsing="false" onAction="#Btn_Freio" prefHeight="50.0" prefWidth="944.0" text="Freio">
                            <GridPane.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </GridPane.margin>
@@ -151,7 +151,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="Btn_Mov_Esq" mnemonicParsing="false" onAction="#Mov_Esquerda" prefHeight="50.0" prefWidth="504.0" text="Mov. Esquerda">
+                        <Button fx:id="Btn_Mov_Esq" mnemonicParsing="false" onMousePressed="#Mov_Esquerda" onMouseReleased="#Stop_Mov" prefHeight="50.0" prefWidth="504.0" text="Mov. Esquerda">
                            <GridPane.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </GridPane.margin>
@@ -159,7 +159,7 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="Btn_Mov_Esq" mnemonicParsing="false" onAction="#Mov_Direita" prefHeight="50.0" prefWidth="540.0" text="Mov. Esquerda" GridPane.columnIndex="1">
+                        <Button fx:id="Btn_Mov_Esq" mnemonicParsing="false" onMousePressed="#Mov_Direita" onMouseReleased="#Stop_Mov" prefHeight="50.0" prefWidth="540.0" text="Mov. Esquerda" GridPane.columnIndex="1">
                            <font>
                               <Font size="20.0" />
                            </font>
