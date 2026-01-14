@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1980.0" prefWidth="1020.0" style="-fx-background-color: red;" styleClass="telamanual" stylesheets="@css/telamanual.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.mesademedicao.controller.TelaManualController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1980.0" prefWidth="1020.0" style="-fx-background-color: blue;" styleClass="telamanual" stylesheets="@css/telamanual.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.br.mesademedicao.controller.TelaManualController">
    <children>
       <HBox alignment="CENTER" prefHeight="164.0" prefWidth="1020.0">
          <children>
