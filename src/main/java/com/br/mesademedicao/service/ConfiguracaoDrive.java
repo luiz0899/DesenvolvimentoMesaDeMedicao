@@ -8,4 +8,5 @@ public interface ConfiguracaoDrive {
     public void salvarConfig(Configuracao cfg);
     
     public Configuracao carregarConfig();
+
 }

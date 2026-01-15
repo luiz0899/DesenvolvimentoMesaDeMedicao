@@ -22,6 +22,8 @@ public class ConfiguracaoDriveImpl implements ConfiguracaoDrive{
             prop.setProperty("passoFuso", cfg.getPassoFuso().toString());
             prop.setProperty("diametroRoda", cfg.getDiametroRoda().toString());
             prop.setProperty("refPiCalculo", cfg.getRefPiCalculo().toString());
+            prop.setProperty("portaComunicao", cfg.getNomePorta().toString());
+            prop.setProperty("baudRate", cfg.getBaudRate().toString());
 
             FileOutputStream out = new FileOutputStream("config.properties");
             prop.store(out, "Configurações da Máquina");
@@ -47,11 +49,15 @@ public class ConfiguracaoDriveImpl implements ConfiguracaoDrive{
                 Integer.parseInt(prop.getProperty("RPM")),
                 Double.parseDouble(prop.getProperty("passoFuso")),
                 Double.parseDouble(prop.getProperty("diametroRoda")),
-                Double.parseDouble(prop.getProperty("refPiCalculo"))
+                Double.parseDouble(prop.getProperty("refPiCalculo")),
+                prop.getProperty("portaComunicao"),
+                Integer.parseInt(prop.getProperty("baudRate"))
             );
 
         } catch (Exception e) {
             throw new IllegalArgumentException("Erro ao carregar configurações");
         }
     }
+
+   
 }

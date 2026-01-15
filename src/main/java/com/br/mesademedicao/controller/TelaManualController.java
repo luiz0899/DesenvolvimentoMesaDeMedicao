@@ -1,6 +1,7 @@
 
 package com.br.mesademedicao.controller;
 
+import com.br.mesademedicao.util.TratamentoDeVariaveis;
 import com.br.mesademedicao.entity.Configuracao;
 import com.br.mesademedicao.service.ConfiguracaoDrive;
 import com.br.mesademedicao.service.Impl.OperacaoManualImpl;

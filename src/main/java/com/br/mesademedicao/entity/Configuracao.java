@@ -8,14 +8,35 @@ public class Configuracao {
     private Double  passoFuso;
     private Double diametroRoda;
     private Double refPiCalculo;
+    private Integer baudRate;
+    private String nomePorta;
 
-    public Configuracao(Integer passosPorRevolucao, Integer microstepping, Integer rpm, Double passoFuso, Double diametroRoda, Double refPiCalculo) {
+    public Configuracao(Integer passosPorRevolucao, Integer microstepping, Integer rpm, Double passoFuso,
+                        Double diametroRoda, Double refPiCalculo,String nomePorta,Integer baudRate) {
         this.passosPorRevolucao = passosPorRevolucao;
         this.microstepping = microstepping;
         this.rpm = rpm;
         this.passoFuso = passoFuso;
         this.diametroRoda = diametroRoda;
         this.refPiCalculo = refPiCalculo;
+        this.baudRate = baudRate;
+        this.nomePorta = nomePorta; 
+    }
+
+    public Integer getBaudRate() {
+        return baudRate;
+    }
+
+    public void setBaudRate(Integer baudRate) {
+        this.baudRate = baudRate;
+    }
+
+    public String getNomePorta() {
+        return nomePorta;
+    }
+
+    public void setNomePorta(String nomePorta) {
+        this.nomePorta = nomePorta;
     }
 
     public Integer getPassosPorRevolucao() {
